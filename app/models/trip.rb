@@ -38,6 +38,7 @@ class Trip < ActiveRecord::Base
   end
 
   def self.find_station_id(station_name)
+    return "This station has not been added to the database yet" if Station.find_by(name: station_name).nil?
     Station.find_by(name: station_name).id
   end
 
