@@ -10,6 +10,7 @@ class Trip < ActiveRecord::Base
             :zipcode,
                presence: true
   belongs_to :subscription
+  belongs_to :condition
 
   def self.import(trip_details)
     self.create(subscription_id: find_subscription_id(trip_details[:subscription_type]),
@@ -26,8 +27,8 @@ class Trip < ActiveRecord::Base
     self.find_or_create_by(subscription_id: find_subscription_id(trip_details[:subscription_name]),
                           duration: trip_details[:duration],
                           start_date: trip_details[:start_date],
-                          start_station_id: find_station_name(trip_details[:start_station_name]),
-                          end_station_id: find_station_name(trip_details[:end_station_name]),
+                          start_station_id: find_station_id(trip_details[:start_station_name]),
+                          end_station_id: find_station_id(trip_details[:end_station_name]),
                           end_date: trip_details[:end_date],
                           bike_id: trip_details[:bike_id],
                           zipcode: trip_details[:zipcode])
