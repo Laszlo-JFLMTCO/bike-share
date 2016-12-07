@@ -9,7 +9,8 @@ class Condition < ActiveRecord::Base
             :mean_humidity,
             :mean_visibility_miles,
             :max_wind_speed_mph,
-            :precipitation_inches, presence: true
+            :precipitation_inches,
+              presence: true
 
   def self.write(condition_details)
     find_or_create_by(condition_details)
@@ -57,6 +58,26 @@ class Condition < ActiveRecord::Base
 
   def self.lowest_number_of_rides_in_range_precip(range)
     grouped_days_in_range_precip(range).values.sort.first
+  end
+
+  def self.days_with_mean_wind_speed_in(range)
+    where(mean_wind_speed_mph: range)
+  end
+
+  def self.grouped_days_in_range_wind(range)
+    days_with_mean_wind_speed_in(range).joins(:trips).group(:date).count("id")
+  end
+
+  def self.average_number_of_rides_in_range_wind(range)
+    (grouped_days_in_range_wind(range).values.reduce(:+).to_f / grouped_days_in_range_wind(range).values.count).round(2)
+  end
+
+  def self.highest_number_of_rides_in_range_mean_wind_speed(range)
+    grouped_days_in_range_wind(range).values.sort.last
+  end
+
+  def self.lowest_number_of_rides_in_range_mean_wind_speed(range)
+    grouped_days_in_range_wind(range).values.sort.first
   end
 
 end
