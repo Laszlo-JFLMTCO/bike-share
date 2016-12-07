@@ -88,6 +88,10 @@ include WillPaginate::Sinatra::Helpers
     erb :"conditions/index"
   end
 
+  get "/conditions-dashboard" do
+    erb :"conditions/dashboard"
+  end
+
   get "/conditions/new" do
     erb :"conditions/new"
   end

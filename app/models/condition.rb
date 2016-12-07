@@ -15,7 +15,7 @@ class Condition < ActiveRecord::Base
     find_or_create_by(condition_details)
   end
 
-  def self.days_with_high_temps_between(range)
+  def self.days_with_high_temps_in(range)
     where(max_temperature_f: range)
   end
 
@@ -23,20 +23,40 @@ class Condition < ActiveRecord::Base
     joins(:trips).group(:date).count("id")
   end
 
-  def self.grouped_days_in_range(range)
-    days_with_high_temps_between(range).joins(:trips).group(:date).count("id")
+  def self.grouped_days_in_range_max_temp(range)
+    days_with_high_temps_in(range).joins(:trips).group(:date).count("id")
   end
 
-  def self.average_number_of_rides_in_range(range)
-    (grouped_days_in_range(range).values.reduce(:+).to_f / grouped_days_in_range(range).values.count).round(2)
+  def self.average_number_of_rides_in_range_max_temp(range)
+    (grouped_days_in_range_max_temp(range).values.reduce(:+).to_f / grouped_days_in_range_max_temp(range).values.count).round(2)
   end
 
-  def self.highest_number_of_rides_in_range(range)
-    grouped_days_in_range(range).values.sort.last
+  def self.highest_number_of_rides_in_range_max_temp(range)
+    grouped_days_in_range_max_temp(range).values.sort.last
   end
 
-  def self.lowest_number_of_rides_in_range(range)
-    grouped_days_in_range(range).values.sort.first
+  def self.lowest_number_of_rides_in_range_max_temp(range)
+    grouped_days_in_range_max_temp(range).values.sort.first
+  end
+
+  def self.days_with_precipitation_in(range)
+    where(precipitation_inches: range)
+  end
+
+  def self.grouped_days_in_range_precip(range)
+    days_with_precipitation_in(range).joins(:trips).group(:date).count("id")
+  end
+
+  def self.average_number_of_rides_in_range_precip(range)
+    (grouped_days_in_range_precip(range).values.reduce(:+).to_f / grouped_days_in_range_precip(range).values.count).round(2)
+  end
+
+  def self.highest_number_of_rides_in_range_precip(range)
+    grouped_days_in_range_precip(range).values.sort.last
+  end
+
+  def self.lowest_number_of_rides_in_range_precip(range)
+    grouped_days_in_range_precip(range).values.sort.first
   end
 
 end
