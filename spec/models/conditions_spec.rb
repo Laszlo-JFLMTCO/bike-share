@@ -10,7 +10,7 @@ describe "" do
                                           mean_visibility_miles: 1,
                                           max_wind_speed_mph: 23,
                                           precipitation_inches: 0)
-      
+
       expect(invalid_condition).to_not be_valid
     end
     it "won't allow a conditions without max_temperature_f to be saved" do
@@ -21,7 +21,7 @@ describe "" do
                                           mean_visibility_miles: 1,
                                           max_wind_speed_mph: 23,
                                           precipitation_inches: 0)
-      
+
       expect(invalid_condition).to_not be_valid
     end
     it "won't allow a conditions without min_temperature_f to be saved" do
@@ -32,7 +32,7 @@ describe "" do
                                           mean_visibility_miles: 1,
                                           max_wind_speed_mph: 23,
                                           precipitation_inches: 0)
-      
+
       expect(invalid_condition).to_not be_valid
     end
     it "won't allow a conditions without mean_humidity to be saved" do
@@ -43,7 +43,7 @@ describe "" do
                                           mean_visibility_miles: 1,
                                           max_wind_speed_mph: 23,
                                           precipitation_inches: 0)
-      
+
       expect(invalid_condition).to_not be_valid
     end
     it "won't allow a conditions without mean_visibility_miles to be saved" do
@@ -54,7 +54,7 @@ describe "" do
                                           mean_humidity: 20,
                                           max_wind_speed_mph: 23,
                                           precipitation_inches: 0)
-      
+
       expect(invalid_condition).to_not be_valid
     end
     it "won't allow a conditions without max_wind_speed_mph to be saved" do
@@ -65,7 +65,7 @@ describe "" do
                                           mean_humidity: 20,
                                           mean_visibility_miles: 1,
                                           precipitation_inches: 0)
-      
+
       expect(invalid_condition).to_not be_valid
     end
     it "won't allow a conditions without precipitation_inches to be saved" do
@@ -76,7 +76,7 @@ describe "" do
                                           mean_humidity: 20,
                                           mean_visibility_miles: 1,
                                           max_wind_speed_mph: 23)
-      
+
       expect(invalid_condition).to_not be_valid
     end
     it "won't allow a conditions without mean_temperature_f to be saved" do
@@ -87,9 +87,9 @@ describe "" do
                                           mean_visibility_miles: 1,
                                           max_wind_speed_mph: 23,
                                           precipitation_inches: 0)
-      
+
       expect(invalid_condition).to_not be_valid
-    end 
+    end
   end
 
   describe "Dashboard Methods" do
@@ -120,6 +120,7 @@ describe "" do
                       precipitation_inches: 0)
    
       expect(Condition.days_with_high_temps_in(40..49).count).to eq(2)
+
     end
 
     it "can pull trips for a condition" do
@@ -135,7 +136,7 @@ describe "" do
                 end_date: "2011-3-6",
                 end_station_name: "TestStation3",
                 bike_id: 3,
-                subscription_type: "Subscriber", 
+                subscription_type: "Subscriber",
                 zipcode: 80211)
       Trip.write(duration: 23,
                 start_date: "2013-12-12",
@@ -143,7 +144,7 @@ describe "" do
                 end_date: "2011-3-6",
                 end_station_name: "TestStation3",
                 bike_id: 3,
-                subscription_type: "Subscriber", 
+                subscription_type: "Subscriber",
                 zipcode: 80211)
       condition = Condition.write(date: "2013-12-12",
                                   max_temperature_f: 45,
@@ -153,7 +154,7 @@ describe "" do
                                   mean_visibility_miles: 1,
                                   max_wind_speed_mph: 23,
                                   precipitation_inches: 0)
-      
+
       expect(condition.trips.count).to eq(2)
     end
 
@@ -320,7 +321,7 @@ describe "" do
                 end_date: "2011-3-6",
                 end_station_name: "TestStation3",
                 bike_id: 3,
-                subscription_type: "Subscriber", 
+                subscription_type: "Subscriber",
                 zipcode: 80211)
       Trip.write(duration: 45,
                 start_date: "2013-12-12",
@@ -328,7 +329,7 @@ describe "" do
                 end_date: "2011-3-6",
                 end_station_name: "TestStation3",
                 bike_id: 3,
-                subscription_type: "Subscriber", 
+                subscription_type: "Subscriber",
                 zipcode: 80211)
       Trip.write(duration: 23,
                 start_date: "2013-12-12",
@@ -336,7 +337,7 @@ describe "" do
                 end_date: "2011-3-6",
                 end_station_name: "TestStation3",
                 bike_id: 3,
-                subscription_type: "Subscriber", 
+                subscription_type: "Subscriber",
                 zipcode: 80211)
       Trip.write(duration: 76,
                 start_date: "2013-10-12",
@@ -344,7 +345,7 @@ describe "" do
                 end_date: "2011-3-6",
                 end_station_name: "TestStation3",
                 bike_id: 3,
-                subscription_type: "Subscriber", 
+                subscription_type: "Subscriber",
                 zipcode: 80211)
       Trip.write(duration: 23,
                 start_date: "2013-06-13",
@@ -352,7 +353,7 @@ describe "" do
                 end_date: "2011-3-6",
                 end_station_name: "TestStation3",
                 bike_id: 3,
-                subscription_type: "Subscriber", 
+                subscription_type: "Subscriber",
                 zipcode: 80211)
       Trip.write(duration: 7,
                 start_date: "2013-06-13",
@@ -360,7 +361,7 @@ describe "" do
                 end_date: "2011-3-6",
                 end_station_name: "TestStation3",
                 bike_id: 3,
-                subscription_type: "Subscriber", 
+                subscription_type: "Subscriber",
                 zipcode: 80211)
       Trip.write(duration: 70,
                 start_date: "2013-06-13",
@@ -368,7 +369,7 @@ describe "" do
                 end_date: "2011-3-6",
                 end_station_name: "TestStation3",
                 bike_id: 3,
-                subscription_type: "Subscriber", 
+                subscription_type: "Subscriber",
                 zipcode: 80211)
       Condition.write(date: "2013-12-12",
                       max_temperature_f: 32,
@@ -396,6 +397,7 @@ describe "" do
                       precipitation_inches: 0) 
       
       expect(Condition.average_number_of_rides_in_range_max_temp(31..40)).to eq(2.33)
+
     end
 
     it "highest number of rides for day in max_temp chunks" do
@@ -411,7 +413,7 @@ describe "" do
                 end_date: "2011-3-6",
                 end_station_name: "TestStation3",
                 bike_id: 3,
-                subscription_type: "Subscriber", 
+                subscription_type: "Subscriber",
                 zipcode: 80211)
       Trip.write(duration: 45,
                 start_date: "2013-12-12",
@@ -419,7 +421,7 @@ describe "" do
                 end_date: "2011-3-6",
                 end_station_name: "TestStation3",
                 bike_id: 3,
-                subscription_type: "Subscriber", 
+                subscription_type: "Subscriber",
                 zipcode: 80211)
       Trip.write(duration: 23,
                 start_date: "2013-12-12",
@@ -427,7 +429,7 @@ describe "" do
                 end_date: "2011-3-6",
                 end_station_name: "TestStation3",
                 bike_id: 3,
-                subscription_type: "Subscriber", 
+                subscription_type: "Subscriber",
                 zipcode: 80211)
       Trip.write(duration: 76,
                 start_date: "2013-10-12",
@@ -435,7 +437,7 @@ describe "" do
                 end_date: "2011-3-6",
                 end_station_name: "TestStation3",
                 bike_id: 3,
-                subscription_type: "Subscriber", 
+                subscription_type: "Subscriber",
                 zipcode: 80211)
       Trip.write(duration: 23,
                 start_date: "2013-06-13",
@@ -443,7 +445,7 @@ describe "" do
                 end_date: "2011-3-6",
                 end_station_name: "TestStation3",
                 bike_id: 3,
-                subscription_type: "Subscriber", 
+                subscription_type: "Subscriber",
                 zipcode: 80211)
       Trip.write(duration: 7,
                 start_date: "2013-06-13",
@@ -451,7 +453,7 @@ describe "" do
                 end_date: "2011-3-6",
                 end_station_name: "TestStation3",
                 bike_id: 3,
-                subscription_type: "Subscriber", 
+                subscription_type: "Subscriber",
                 zipcode: 80211)
       Trip.write(duration: 70,
                 start_date: "2013-06-13",
@@ -459,7 +461,7 @@ describe "" do
                 end_date: "2011-3-6",
                 end_station_name: "TestStation3",
                 bike_id: 3,
-                subscription_type: "Subscriber", 
+                subscription_type: "Subscriber",
                 zipcode: 80211)
       Condition.write(date: "2013-12-12",
                       max_temperature_f: 32,
@@ -487,6 +489,7 @@ describe "" do
                       precipitation_inches: 0)
     
       expect(Condition.highest_number_of_rides_in_range_max_temp(31..40)).to eq(3)
+
     end
 
     it "lowest number of rides for day in max_temp chunks" do
@@ -502,7 +505,7 @@ describe "" do
                 end_date: "2011-3-6",
                 end_station_name: "TestStation3",
                 bike_id: 3,
-                subscription_type: "Subscriber", 
+                subscription_type: "Subscriber",
                 zipcode: 80211)
       Trip.write(duration: 45,
                 start_date: "2013-12-12",
@@ -510,7 +513,7 @@ describe "" do
                 end_date: "2011-3-6",
                 end_station_name: "TestStation3",
                 bike_id: 3,
-                subscription_type: "Subscriber", 
+                subscription_type: "Subscriber",
                 zipcode: 80211)
       Trip.write(duration: 23,
                 start_date: "2013-12-12",
@@ -518,7 +521,7 @@ describe "" do
                 end_date: "2011-3-6",
                 end_station_name: "TestStation3",
                 bike_id: 3,
-                subscription_type: "Subscriber", 
+                subscription_type: "Subscriber",
                 zipcode: 80211)
       Trip.write(duration: 76,
                 start_date: "2013-10-12",
@@ -526,7 +529,7 @@ describe "" do
                 end_date: "2011-3-6",
                 end_station_name: "TestStation3",
                 bike_id: 3,
-                subscription_type: "Subscriber", 
+                subscription_type: "Subscriber",
                 zipcode: 80211)
       Trip.write(duration: 23,
                 start_date: "2013-06-13",
@@ -534,7 +537,7 @@ describe "" do
                 end_date: "2011-3-6",
                 end_station_name: "TestStation3",
                 bike_id: 3,
-                subscription_type: "Subscriber", 
+                subscription_type: "Subscriber",
                 zipcode: 80211)
       Trip.write(duration: 7,
                 start_date: "2013-06-13",
@@ -542,7 +545,7 @@ describe "" do
                 end_date: "2011-3-6",
                 end_station_name: "TestStation3",
                 bike_id: 3,
-                subscription_type: "Subscriber", 
+                subscription_type: "Subscriber",
                 zipcode: 80211)
       Trip.write(duration: 70,
                 start_date: "2013-06-13",
@@ -550,7 +553,7 @@ describe "" do
                 end_date: "2011-3-6",
                 end_station_name: "TestStation3",
                 bike_id: 3,
-                subscription_type: "Subscriber", 
+                subscription_type: "Subscriber",
                 zipcode: 80211)
       Condition.write(date: "2013-12-12",
                       max_temperature_f: 32,
@@ -578,9 +581,10 @@ describe "" do
                       precipitation_inches: 0)
     
       expect(Condition.lowest_number_of_rides_in_range_max_temp(31..40)).to eq(1)
+
     end
 
-    it "chunks days with precipitation into half_inches" do 
+    it "chunks days with precipitation into half_inches" do
       Condition.write(date: "2013-12-12",
                       max_temperature_f: 45,
                       mean_temperature_f: 20,
@@ -607,6 +611,7 @@ describe "" do
                       precipitation_inches: 0.3)  
 
       expect(Condition.days_with_precipitation_in(0..0.5).count).to eq(2)    
+
     end
 
     it "groups only days in precipitiation range" do
@@ -1349,5 +1354,581 @@ describe "" do
       expect(Condition.lowest_number_of_rides_in_range_mean_wind_speed(20..24)).to eq(1)
     end
 
+  it "can chunk days with mean visibility in 4 mile increments" do
+    Condition.write(date: "2013-12-12",
+                    max_temperature_f: 45,
+                    mean_temperature_f: 20,
+                    min_temperature_f: 20,
+                    mean_humidity: 20,
+                    mean_visibility_miles: 1,
+                    max_wind_speed_mph: 23,
+                    precipitation_inches: 0)
+    Condition.write(date: "2013-12-13",
+                    max_temperature_f: 47,
+                    mean_temperature_f: 20,
+                    min_temperature_f: 20,
+                    mean_humidity: 20,
+                    mean_visibility_miles: 1,
+                    max_wind_speed_mph: 23,
+                    precipitation_inches: 5)
+    Condition.write(date: "2013-12-14",
+                    max_temperature_f: 32,
+                    mean_temperature_f: 20,
+                    min_temperature_f: 20,
+                    mean_humidity: 20,
+                    mean_visibility_miles: 4,
+                    max_wind_speed_mph: 23,
+                    precipitation_inches: 0)
+
+    expect(Condition.days_with_visibility_between(0..3).count).to eq(2)
+  end
+
+  it "groups conditions by date and mean visibility" do
+  Station.write(name: "TestStation3",
+                lat: 3.1,
+                long: 3.2,
+                dock_count: 3,
+                city_name: "TestCityName3",
+                installation_date: "2011-11-11")
+  Trip.write(duration: 90,
+            start_date: "2013-12-12",
+            start_station_name: "TestStation3",
+            end_date: "2011-3-6",
+            end_station_name: "TestStation3",
+            bike_id: 3,
+            subscription_type: "Subscriber",
+            zipcode: 80211)
+  Trip.write(duration: 45,
+            start_date: "2013-12-12",
+            start_station_name: "TestStation3",
+            end_date: "2011-3-6",
+            end_station_name: "TestStation3",
+            bike_id: 3,
+            subscription_type: "Subscriber",
+            zipcode: 80211)
+  Trip.write(duration: 23,
+            start_date: "2013-12-12",
+            start_station_name: "TestStation3",
+            end_date: "2011-3-6",
+            end_station_name: "TestStation3",
+            bike_id: 3,
+            subscription_type: "Subscriber",
+            zipcode: 80211)
+  Trip.write(duration: 76,
+            start_date: "2013-10-12",
+            start_station_name: "TestStation3",
+            end_date: "2011-3-6",
+            end_station_name: "TestStation3",
+            bike_id: 3,
+            subscription_type: "Subscriber",
+            zipcode: 80211)
+  Trip.write(duration: 23,
+            start_date: "2013-06-13",
+            start_station_name: "TestStation3",
+            end_date: "2011-3-6",
+            end_station_name: "TestStation3",
+            bike_id: 3,
+            subscription_type: "Subscriber",
+            zipcode: 80211)
+  Trip.write(duration: 7,
+            start_date: "2013-06-13",
+            start_station_name: "TestStation3",
+            end_date: "2011-3-6",
+            end_station_name: "TestStation3",
+            bike_id: 3,
+            subscription_type: "Subscriber",
+            zipcode: 80211)
+  Trip.write(duration: 70,
+            start_date: "2013-06-13",
+            start_station_name: "TestStation3",
+            end_date: "2011-3-6",
+            end_station_name: "TestStation3",
+            bike_id: 3,
+            subscription_type: "Subscriber",
+            zipcode: 80211)
+  Condition.write(date: "2013-12-12",
+                  max_temperature_f: 32,
+                  mean_temperature_f: 20,
+                  min_temperature_f: 20,
+                  mean_humidity: 20,
+                  mean_visibility_miles: 1,
+                  max_wind_speed_mph: 23,
+                  precipitation_inches: 0)
+  Condition.write(date: "2013-10-12",
+                  max_temperature_f: 37,
+                  mean_temperature_f: 20,
+                  min_temperature_f: 20,
+                  mean_humidity: 20,
+                  mean_visibility_miles: 1,
+                  max_wind_speed_mph: 23,
+                  precipitation_inches: 0)
+  Condition.write(date: "2013-06-13",
+                  max_temperature_f: 39,
+                  mean_temperature_f: 20,
+                  min_temperature_f: 20,
+                  mean_humidity: 20,
+                  mean_visibility_miles: 1,
+                  max_wind_speed_mph: 23,
+                  precipitation_inches: 0)
+
+  expect(Condition.grouped_days_in_range_mean_visibility(0..3).keys.count).to eq(3)
+  end
+
+  it "finds average rides in mean visibility" do
+  Station.write(name: "TestStation3",
+                lat: 3.1,
+                long: 3.2,
+                dock_count: 3,
+                city_name: "TestCityName3",
+                installation_date: "2011-11-11")
+  Trip.write(duration: 90,
+            start_date: "2013-12-12",
+            start_station_name: "TestStation3",
+            end_date: "2011-3-6",
+            end_station_name: "TestStation3",
+            bike_id: 3,
+            subscription_type: "Subscriber",
+            zipcode: 80211)
+  Trip.write(duration: 45,
+            start_date: "2013-12-12",
+            start_station_name: "TestStation3",
+            end_date: "2011-3-6",
+            end_station_name: "TestStation3",
+            bike_id: 3,
+            subscription_type: "Subscriber",
+            zipcode: 80211)
+  Trip.write(duration: 23,
+            start_date: "2013-12-12",
+            start_station_name: "TestStation3",
+            end_date: "2011-3-6",
+            end_station_name: "TestStation3",
+            bike_id: 3,
+            subscription_type: "Subscriber",
+            zipcode: 80211)
+  Trip.write(duration: 76,
+            start_date: "2013-10-12",
+            start_station_name: "TestStation3",
+            end_date: "2011-3-6",
+            end_station_name: "TestStation3",
+            bike_id: 3,
+            subscription_type: "Subscriber",
+            zipcode: 80211)
+  Trip.write(duration: 23,
+            start_date: "2013-06-13",
+            start_station_name: "TestStation3",
+            end_date: "2011-3-6",
+            end_station_name: "TestStation3",
+            bike_id: 3,
+            subscription_type: "Subscriber",
+            zipcode: 80211)
+  Trip.write(duration: 7,
+            start_date: "2013-06-13",
+            start_station_name: "TestStation3",
+            end_date: "2011-3-6",
+            end_station_name: "TestStation3",
+            bike_id: 3,
+            subscription_type: "Subscriber",
+            zipcode: 80211)
+  Trip.write(duration: 70,
+            start_date: "2013-06-13",
+            start_station_name: "TestStation3",
+            end_date: "2011-3-6",
+            end_station_name: "TestStation3",
+            bike_id: 3,
+            subscription_type: "Subscriber",
+            zipcode: 80211)
+  Condition.write(date: "2013-12-12",
+                  max_temperature_f: 32,
+                  mean_temperature_f: 20,
+                  min_temperature_f: 20,
+                  mean_humidity: 20,
+                  mean_visibility_miles: 1,
+                  max_wind_speed_mph: 23,
+                  precipitation_inches: 0)
+  Condition.write(date: "2013-10-12",
+                  max_temperature_f: 37,
+                  mean_temperature_f: 20,
+                  min_temperature_f: 20,
+                  mean_humidity: 20,
+                  mean_visibility_miles: 1,
+                  max_wind_speed_mph: 23,
+                  precipitation_inches: 0)
+  Condition.write(date: "2013-06-13",
+                  max_temperature_f: 39,
+                  mean_temperature_f: 20,
+                  min_temperature_f: 20,
+                  mean_humidity: 20,
+                  mean_visibility_miles: 1,
+                  max_wind_speed_mph: 23,
+                  precipitation_inches: 0)
+
+  expect(Condition.average_number_of_rides_in_mean_visibility(0..3)).to eq(2.33)
+  end
+
+
+  it "finds highest rides in mean visibility" do
+  Station.write(name: "TestStation3",
+                lat: 3.1,
+                long: 3.2,
+                dock_count: 3,
+                city_name: "TestCityName3",
+                installation_date: "2011-11-11")
+  Trip.write(duration: 90,
+            start_date: "2013-12-12",
+            start_station_name: "TestStation3",
+            end_date: "2011-3-6",
+            end_station_name: "TestStation3",
+            bike_id: 3,
+            subscription_type: "Subscriber",
+            zipcode: 80211)
+  Trip.write(duration: 45,
+            start_date: "2013-12-12",
+            start_station_name: "TestStation3",
+            end_date: "2011-3-6",
+            end_station_name: "TestStation3",
+            bike_id: 3,
+            subscription_type: "Subscriber",
+            zipcode: 80211)
+  Trip.write(duration: 23,
+            start_date: "2013-12-12",
+            start_station_name: "TestStation3",
+            end_date: "2011-3-6",
+            end_station_name: "TestStation3",
+            bike_id: 3,
+            subscription_type: "Subscriber",
+            zipcode: 80211)
+  Trip.write(duration: 76,
+            start_date: "2013-10-12",
+            start_station_name: "TestStation3",
+            end_date: "2011-3-6",
+            end_station_name: "TestStation3",
+            bike_id: 3,
+            subscription_type: "Subscriber",
+            zipcode: 80211)
+  Trip.write(duration: 23,
+            start_date: "2013-06-13",
+            start_station_name: "TestStation3",
+            end_date: "2011-3-6",
+            end_station_name: "TestStation3",
+            bike_id: 3,
+            subscription_type: "Subscriber",
+            zipcode: 80211)
+  Trip.write(duration: 7,
+            start_date: "2013-06-13",
+            start_station_name: "TestStation3",
+            end_date: "2011-3-6",
+            end_station_name: "TestStation3",
+            bike_id: 3,
+            subscription_type: "Subscriber",
+            zipcode: 80211)
+  Trip.write(duration: 70,
+            start_date: "2013-06-13",
+            start_station_name: "TestStation3",
+            end_date: "2011-3-6",
+            end_station_name: "TestStation3",
+            bike_id: 3,
+            subscription_type: "Subscriber",
+            zipcode: 80211)
+  Condition.write(date: "2013-12-12",
+                  max_temperature_f: 32,
+                  mean_temperature_f: 20,
+                  min_temperature_f: 20,
+                  mean_humidity: 20,
+                  mean_visibility_miles: 1,
+                  max_wind_speed_mph: 23,
+                  precipitation_inches: 0)
+  Condition.write(date: "2013-10-12",
+                  max_temperature_f: 37,
+                  mean_temperature_f: 20,
+                  min_temperature_f: 20,
+                  mean_humidity: 20,
+                  mean_visibility_miles: 1,
+                  max_wind_speed_mph: 23,
+                  precipitation_inches: 0)
+  Condition.write(date: "2013-06-13",
+                  max_temperature_f: 39,
+                  mean_temperature_f: 20,
+                  min_temperature_f: 20,
+                  mean_humidity: 20,
+                  mean_visibility_miles: 1,
+                  max_wind_speed_mph: 23,
+                  precipitation_inches: 0)
+
+  expect(Condition.highest_number_of_rides_in_mean_visibility(0..3)).to eq(3)
+  end
+
+  it "finds highest rides in mean visibility" do
+  Station.write(name: "TestStation3",
+                lat: 3.1,
+                long: 3.2,
+                dock_count: 3,
+                city_name: "TestCityName3",
+                installation_date: "2011-11-11")
+  Trip.write(duration: 90,
+            start_date: "2013-12-12",
+            start_station_name: "TestStation3",
+            end_date: "2011-3-6",
+            end_station_name: "TestStation3",
+            bike_id: 3,
+            subscription_type: "Subscriber",
+            zipcode: 80211)
+  Trip.write(duration: 45,
+            start_date: "2013-12-12",
+            start_station_name: "TestStation3",
+            end_date: "2011-3-6",
+            end_station_name: "TestStation3",
+            bike_id: 3,
+            subscription_type: "Subscriber",
+            zipcode: 80211)
+  Trip.write(duration: 23,
+            start_date: "2013-12-12",
+            start_station_name: "TestStation3",
+            end_date: "2011-3-6",
+            end_station_name: "TestStation3",
+            bike_id: 3,
+            subscription_type: "Subscriber",
+            zipcode: 80211)
+  Trip.write(duration: 76,
+            start_date: "2013-10-12",
+            start_station_name: "TestStation3",
+            end_date: "2011-3-6",
+            end_station_name: "TestStation3",
+            bike_id: 3,
+            subscription_type: "Subscriber",
+            zipcode: 80211)
+  Trip.write(duration: 23,
+            start_date: "2013-06-13",
+            start_station_name: "TestStation3",
+            end_date: "2011-3-6",
+            end_station_name: "TestStation3",
+            bike_id: 3,
+            subscription_type: "Subscriber",
+            zipcode: 80211)
+  Trip.write(duration: 7,
+            start_date: "2013-06-13",
+            start_station_name: "TestStation3",
+            end_date: "2011-3-6",
+            end_station_name: "TestStation3",
+            bike_id: 3,
+            subscription_type: "Subscriber",
+            zipcode: 80211)
+  Trip.write(duration: 70,
+            start_date: "2013-06-13",
+            start_station_name: "TestStation3",
+            end_date: "2011-3-6",
+            end_station_name: "TestStation3",
+            bike_id: 3,
+            subscription_type: "Subscriber",
+            zipcode: 80211)
+  Condition.write(date: "2013-12-12",
+                  max_temperature_f: 32,
+                  mean_temperature_f: 20,
+                  min_temperature_f: 20,
+                  mean_humidity: 20,
+                  mean_visibility_miles: 1,
+                  max_wind_speed_mph: 23,
+                  precipitation_inches: 0)
+  Condition.write(date: "2013-10-12",
+                  max_temperature_f: 37,
+                  mean_temperature_f: 20,
+                  min_temperature_f: 20,
+                  mean_humidity: 20,
+                  mean_visibility_miles: 1,
+                  max_wind_speed_mph: 23,
+                  precipitation_inches: 0)
+  Condition.write(date: "2013-06-13",
+                  max_temperature_f: 39,
+                  mean_temperature_f: 20,
+                  min_temperature_f: 20,
+                  mean_humidity: 20,
+                  mean_visibility_miles: 1,
+                  max_wind_speed_mph: 23,
+                  precipitation_inches: 0)
+
+  expect(Condition.lowest_number_of_rides_in_mean_visibility(0..3)).to eq(1)
+  end
+
+    it "finds weather conditions of day with highest rides" do
+    Station.write(name: "TestStation3",
+                  lat: 3.1,
+                  long: 3.2,
+                  dock_count: 3,
+                  city_name: "TestCityName3",
+                  installation_date: "2011-11-11")
+    Trip.write(duration: 90,
+              start_date: "2013-12-12",
+              start_station_name: "TestStation3",
+              end_date: "2011-3-6",
+              end_station_name: "TestStation3",
+              bike_id: 3,
+              subscription_type: "Subscriber",
+              zipcode: 80211)
+    Trip.write(duration: 45,
+              start_date: "2013-12-12",
+              start_station_name: "TestStation3",
+              end_date: "2011-3-6",
+              end_station_name: "TestStation3",
+              bike_id: 3,
+              subscription_type: "Subscriber",
+              zipcode: 80211)
+    Trip.write(duration: 23,
+              start_date: "2013-12-12",
+              start_station_name: "TestStation3",
+              end_date: "2011-3-6",
+              end_station_name: "TestStation3",
+              bike_id: 3,
+              subscription_type: "Subscriber",
+              zipcode: 80211)
+    Trip.write(duration: 76,
+              start_date: "2013-10-12",
+              start_station_name: "TestStation3",
+              end_date: "2011-3-6",
+              end_station_name: "TestStation3",
+              bike_id: 3,
+              subscription_type: "Subscriber",
+              zipcode: 80211)
+    Trip.write(duration: 23,
+              start_date: "2013-06-13",
+              start_station_name: "TestStation3",
+              end_date: "2011-3-6",
+              end_station_name: "TestStation3",
+              bike_id: 3,
+              subscription_type: "Subscriber",
+              zipcode: 80211)
+    Trip.write(duration: 7,
+              start_date: "2013-06-13",
+              start_station_name: "TestStation3",
+              end_date: "2011-3-6",
+              end_station_name: "TestStation3",
+              bike_id: 3,
+              subscription_type: "Subscriber",
+              zipcode: 80211)
+    Trip.write(duration: 70,
+              start_date: "2013-06-13",
+              start_station_name: "TestStation3",
+              end_date: "2011-3-6",
+              end_station_name: "TestStation3",
+              bike_id: 3,
+              subscription_type: "Subscriber",
+              zipcode: 80211)
+    Condition.write(date: "2013-12-12",
+                    max_temperature_f: 32,
+                    mean_temperature_f: 20,
+                    min_temperature_f: 20,
+                    mean_humidity: 20,
+                    mean_visibility_miles: 1,
+                    max_wind_speed_mph: 23,
+                    precipitation_inches: 0)
+    Condition.write(date: "2013-10-12",
+                    max_temperature_f: 37,
+                    mean_temperature_f: 20,
+                    min_temperature_f: 20,
+                    mean_humidity: 20,
+                    mean_visibility_miles: 1,
+                    max_wind_speed_mph: 23,
+                    precipitation_inches: 0)
+    Condition.write(date: "2013-06-13",
+                    max_temperature_f: 39,
+                    mean_temperature_f: 20,
+                    min_temperature_f: 20,
+                    mean_humidity: 20,
+                    mean_visibility_miles: 1,
+                    max_wind_speed_mph: 23,
+                    precipitation_inches: 0)
+
+    expect(Condition.day_with_highest_number_of_rides.date.to_s).to eq("2013-06-13")
+    end
+
+    it "finds weather conditions of day with lowest rides" do
+    Station.write(name: "TestStation3",
+                  lat: 3.1,
+                  long: 3.2,
+                  dock_count: 3,
+                  city_name: "TestCityName3",
+                  installation_date: "2011-11-11")
+    Trip.write(duration: 90,
+              start_date: "2013-12-12",
+              start_station_name: "TestStation3",
+              end_date: "2011-3-6",
+              end_station_name: "TestStation3",
+              bike_id: 3,
+              subscription_type: "Subscriber",
+              zipcode: 80211)
+    Trip.write(duration: 45,
+              start_date: "2013-12-12",
+              start_station_name: "TestStation3",
+              end_date: "2011-3-6",
+              end_station_name: "TestStation3",
+              bike_id: 3,
+              subscription_type: "Subscriber",
+              zipcode: 80211)
+    Trip.write(duration: 23,
+              start_date: "2013-12-12",
+              start_station_name: "TestStation3",
+              end_date: "2011-3-6",
+              end_station_name: "TestStation3",
+              bike_id: 3,
+              subscription_type: "Subscriber",
+              zipcode: 80211)
+    Trip.write(duration: 76,
+              start_date: "2013-10-12",
+              start_station_name: "TestStation3",
+              end_date: "2011-3-6",
+              end_station_name: "TestStation3",
+              bike_id: 3,
+              subscription_type: "Subscriber",
+              zipcode: 80211)
+    Trip.write(duration: 23,
+              start_date: "2013-06-13",
+              start_station_name: "TestStation3",
+              end_date: "2011-3-6",
+              end_station_name: "TestStation3",
+              bike_id: 3,
+              subscription_type: "Subscriber",
+              zipcode: 80211)
+    Trip.write(duration: 7,
+              start_date: "2013-06-13",
+              start_station_name: "TestStation3",
+              end_date: "2011-3-6",
+              end_station_name: "TestStation3",
+              bike_id: 3,
+              subscription_type: "Subscriber",
+              zipcode: 80211)
+    Trip.write(duration: 70,
+              start_date: "2013-06-13",
+              start_station_name: "TestStation3",
+              end_date: "2011-3-6",
+              end_station_name: "TestStation3",
+              bike_id: 3,
+              subscription_type: "Subscriber",
+              zipcode: 80211)
+    Condition.write(date: "2013-12-12",
+                    max_temperature_f: 32,
+                    mean_temperature_f: 20,
+                    min_temperature_f: 20,
+                    mean_humidity: 20,
+                    mean_visibility_miles: 1,
+                    max_wind_speed_mph: 23,
+                    precipitation_inches: 0)
+    Condition.write(date: "2013-10-12",
+                    max_temperature_f: 37,
+                    mean_temperature_f: 20,
+                    min_temperature_f: 20,
+                    mean_humidity: 20,
+                    mean_visibility_miles: 1,
+                    max_wind_speed_mph: 23,
+                    precipitation_inches: 0)
+    Condition.write(date: "2013-06-13",
+                    max_temperature_f: 39,
+                    mean_temperature_f: 20,
+                    min_temperature_f: 20,
+                    mean_humidity: 20,
+                    mean_visibility_miles: 1,
+                    max_wind_speed_mph: 23,
+                    precipitation_inches: 0)
+
+    expect(Condition.day_with_lowest_number_of_rides.date.to_s).to eq("2013-10-12")
+    end
   end
 end
+

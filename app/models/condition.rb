@@ -80,4 +80,33 @@ class Condition < ActiveRecord::Base
     grouped_days_in_range_wind(range).values.sort.first
   end
 
+  def self.days_with_visibility_between(range)
+    where(mean_visibility_miles: range)
+  end
+
+  def self.grouped_days_in_range_mean_visibility(range)
+    days_with_visibility_between(range).joins(:trips).group(:date).count("id")
+  end
+
+  def self.average_number_of_rides_in_mean_visibility(range)
+    (grouped_days_in_range_mean_visibility(range).values.reduce(:+).to_f / grouped_days_in_range_mean_visibility(range).values.count).round(2)
+  end
+
+  def self.highest_number_of_rides_in_mean_visibility(range)
+    grouped_days_in_range_mean_visibility(range).values.sort.last
+  end
+
+  def self.lowest_number_of_rides_in_mean_visibility(range)
+    grouped_days_in_range_mean_visibility(range).values.sort.first
+  end
+
+  def self.day_with_highest_number_of_rides
+    find_by(date: grouped_by_date_number_of_trips.key(grouped_by_date_number_of_trips.values.max))
+  end
+
+  def self.day_with_lowest_number_of_rides
+    find_by(date: grouped_by_date_number_of_trips.key(grouped_by_date_number_of_trips.values.min))
+  end
+
+
 end
