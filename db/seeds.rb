@@ -4,7 +4,6 @@ require_relative '../app/models/condition'
 require_relative '../app/models/city'
 require_relative '../app/models/trip'
 
-<<<<<<< HEAD
 def time_fix(date)
   date_split = date.split('/')
   date_split[0], date_split[1] , date_split[2] = date_split[2][0..3], date_split[0] , date_split[1]
@@ -27,7 +26,7 @@ end
 
 def import_trip_csv
   CSV.foreach('db/csv/trip.csv', :headers=> true) do |row|
-    Trip.write({duration: row['duration'],
+    Trip.import({duration: row['duration'],
                 start_date: time_fix(row['start_date']),
                 start_station_name: row['start_station_name'],
                 end_station_name: row['end_station_name'],

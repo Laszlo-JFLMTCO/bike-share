@@ -11,12 +11,23 @@ class Trip < ActiveRecord::Base
                presence: true
   belongs_to :subscription
 
+  def self.import(trip_details)
+    self.create(subscription_id: find_subscription_id(trip_details[:subscription_type]),
+                duration: trip_details[:duration],
+                start_date: trip_details[:start_date],
+                start_station_id: find_station_id(trip_details[:start_station_name]),
+                end_station_id: find_station_id(trip_details[:end_station_name]),
+                end_date: trip_details[:end_date],
+                bike_id: trip_details[:bike_id],
+                zipcode: trip_details[:zipcode])
+  end
+
   def self.write(trip_details)
     self.find_or_create_by(subscription_id: find_subscription_id(trip_details[:subscription_name]),
                           duration: trip_details[:duration],
                           start_date: trip_details[:start_date],
-                          start_station_id: trip_details[:start_station_id],
-                          end_station_id: trip_details[:end_station_id],
+                          start_station_id: find_station_name(trip_details[:start_station_name]),
+                          end_station_id: find_station_name(trip_details[:end_station_name]),
                           end_date: trip_details[:end_date],
                           bike_id: trip_details[:bike_id],
                           zipcode: trip_details[:zipcode])
@@ -24,6 +35,10 @@ class Trip < ActiveRecord::Base
 
   def self.find_subscription_id(subscription_type)
     Subscription.write(name: subscription_type).id
+  end
+
+  def self.find_station_id(station_name)
+    Station.find_by(name: station_name).id
   end
 
 end
