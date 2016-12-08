@@ -89,6 +89,8 @@ include WillPaginate::Sinatra::Helpers
   end
 
   get "/conditions-dashboard" do
+    @highest_rides = Condition.day_with_highest_number_of_rides 
+    @lowest_rides = Condition.day_with_lowest_number_of_rides
     erb :"conditions/dashboard"
   end
 

@@ -1,5 +1,7 @@
-class Condition < ActiveRecord::Base
+require_relative "date_formater"
 
+class Condition < ActiveRecord::Base
+  include DateFormat
   has_many :trips, class_name: "Trip", primary_key: "date", foreign_key: "start_date"
 
   validates :date,
