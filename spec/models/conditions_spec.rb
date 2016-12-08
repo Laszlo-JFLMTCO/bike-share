@@ -1836,7 +1836,7 @@ describe "" do
                     max_wind_speed_mph: 23,
                     precipitation_inches: 0)
 
-    expect(Condition.day_with_highest_number_of_rides.date.to_s).to eq("2013-06-13")
+    expect(Condition.day_with_highest_number_of_rides.date.to_s).to eq("2013-12-12")
     end
 
     it "finds weather conditions of day with lowest rides" do

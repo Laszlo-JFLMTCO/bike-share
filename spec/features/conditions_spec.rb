@@ -5,21 +5,22 @@ describe "Condition feature test (Capybara)" do
     it "Page loads" do
       visit("/conditions")
 
-      expect(page).to have_content("Daily weather list")
+      expect(page).to have_content("Daily Weather Details")
     end
     it "Page loads with correct content" do
-      Condition.write(date: "2011-01-01",
-                      max_temperature_f: 90,
-                      mean_temperature_f: 45,
-                      min_temperature_f: 0,
-                      mean_humidity: 50,
-                      mean_visibility_miles: 10,
-                      max_wind_speed_mph: 2,
-                      precipitation_inches: 0
-                      )
+      test_condition = Condition.write(date: "2011-01-01",
+                                        max_temperature_f: 90,
+                                        mean_temperature_f: 45,
+                                        min_temperature_f: 0,
+                                        mean_humidity: 50,
+                                        mean_visibility_miles: 10,
+                                        max_wind_speed_mph: 2,
+                                        precipitation_inches: 0
+                                        )
       visit("/conditions")
 
-      expect(page).to have_content("Daily weather list")
+      expect(page).to have_content("Daily Weather Details")
+      expect(page).to have_content(test_condition.max_temperature_f.to_s)
     end
   end
   describe "Show condition page:  GET /conditions/:id" do
@@ -49,7 +50,7 @@ describe "Condition feature test (Capybara)" do
                       )
       visit("/conditions/#{test_condition.id}")
 
-      click_on "Edit"
+      click_on "Update"
 
       expect(page).to have_content("Edit")
       expect(current_path).to eq("/conditions/#{test_condition.id}/edit")
@@ -60,7 +61,7 @@ describe "Condition feature test (Capybara)" do
     it "Page loads with correct content" do
       visit("/conditions/new")
 
-      expect(page).to have_content("Add new weather condition")
+      expect(page).to have_content("Add New Weather Details")
       expect(page).to have_selector("input", :id =>"conditions-date")
       expect(page).to have_selector("input", :id =>"conditions-max_temperature_f")
       expect(page).to have_selector("input", :id =>"conditions-mean_temperature_f")
@@ -139,7 +140,7 @@ describe "Condition feature test (Capybara)" do
 
       fill_in "conditions[max_temperature_f]", with: new_max_temperature_f
 
-      click_on "Save"
+      click_on "Update"
 
       new_condition = Condition.find(test_condition.id)
 
@@ -169,7 +170,7 @@ describe "Condition feature test (Capybara)" do
     end
 
     describe "visit dashboard" do
-      it "shows day with highest number of rides" do
+      it "show day with highest number of rides" do
         Station.write(name: "TestStation3",
                     lat: 3.1,
                     long: 3.2,
@@ -254,7 +255,7 @@ describe "Condition feature test (Capybara)" do
         expect(page).to have_content("Thu, 13 Jun 2013")
       end
 
-      it "Shows weather for day with Lowest Number of Rides" do
+      it "Show weather for day with Lowest Number of Rides" do
         Station.write(name: "TestStation3",
                     lat: 3.1,
                     long: 3.2,
@@ -338,7 +339,7 @@ describe "Condition feature test (Capybara)" do
         expect(page).to have_content("Sat, 12 Oct 2013")
       end
 
-      it "shows temperatures broken into ranges by 10 degrees" do
+      it "show temperatures broken into ranges by 10 degrees" do
       Station.write(name: "TestStation3",
                     lat: 3.1,
                     long: 3.2,
@@ -428,7 +429,7 @@ describe "Condition feature test (Capybara)" do
         end
       end
 
-      it "contains data on number of rides by temp" do
+      it "contain data on number of rides by temp" do
         Station.write(name: "TestStation3",
                     lat: 3.1,
                     long: 3.2,
@@ -534,7 +535,7 @@ describe "Condition feature test (Capybara)" do
         end
       end
 
-      it "shows precipitation_inches in .5 ranges" do
+      it "show precipitation_inches in .5 ranges" do
         Station.write(name: "TestStation3",
                       lat: 3.1,
                       long: 3.2,
@@ -624,7 +625,7 @@ describe "Condition feature test (Capybara)" do
           end
       end
 
-      it "shows data for number of rides by precipitation_inches" do
+      it "show data for number of rides by precipitation_inches" do
         Station.write(name: "TestStation3",
                       lat: 3.1,
                       long: 3.2,
@@ -730,7 +731,7 @@ describe "Condition feature test (Capybara)" do
           end
       end
 
-      it "shows wind speed in 4 mph ranges" do
+      it "show wind speed in 4 mph ranges" do
         Station.write(name: "TestStation3",
                       lat: 3.1,
                       long: 3.2,
@@ -820,7 +821,7 @@ describe "Condition feature test (Capybara)" do
           end
       end
 
-      it "shows data for number of rides by mean_wind_speed_mph" do
+      it "show data for number of rides by mean_wind_speed_mph" do
         Station.write(name: "TestStation3",
                       lat: 3.1,
                       long: 3.2,
@@ -929,7 +930,7 @@ describe "Condition feature test (Capybara)" do
           end
       end
 
-      it "shows visibility in 4 mi ranges" do
+      it "show visibility in 4 mi ranges" do
           Station.write(name: "TestStation3",
                       lat: 3.1,
                       long: 3.2,
@@ -1019,7 +1020,7 @@ describe "Condition feature test (Capybara)" do
           end
       end
 
-      it "shows data for number of rides by mean_visibility_miles" do
+      it "show data for number of rides by mean_visibility_miles" do
         Station.write(name: "TestStation3",
                       lat: 3.1,
                       long: 3.2,
